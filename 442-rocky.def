@@ -471,7 +471,7 @@ echo "options(BioC_mirror = 'https://packagemanager.posit.co/bioconductor')" >> 
   rm /opt/v${OPENJPEG_VERSION}.tar.gz
 
 # moved here because otherwise GDAL installation fails in 4.4.2
-  apt-get update && apt-get install -y python3-pip
+  dnf install python3 -y
   pip3 install --upgrade pip
   pip3 install numpy
 

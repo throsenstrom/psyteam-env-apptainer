@@ -114,8 +114,8 @@ From: rockylinux:8.5
   export SWIG_VERSION=4.3.0
 
 # GIS software versions (GDAL, GEOS, PROJ, SAGA)
-  export GDAL_DATA=/usr/share/gdal
-  export GDAL_VERSION=3.10.1
+#  export GDAL_DATA=/usr/share/gdal
+#  export GDAL_VERSION=3.10.1
   export GEOS_VERSION=3.13.0
   export PROJ_VERSION=9.5.1
   export PROJDATA_VERSION=1.20
@@ -475,36 +475,7 @@ echo "options(BioC_mirror = 'https://packagemanager.posit.co/bioconductor')" >> 
   pip3 install --upgrade pip
   pip3 install numpy
 
-# GDAL
-# http://download.osgeo.org/gdal/
-# https://gdal.org/development/building_from_source.html#building-from-source
-  cd /opt
-  wget http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz
-  tar -xvzf gdal-${GDAL_VERSION}.tar.gz
-  cd gdal-${GDAL_VERSION}  
-  mkdir build
-  cd build
-  cmake \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_PREFIX_PATH=/usr/local \
-  -DCMAKE_INSTALL_PREFIX=/usr/local \
-  -DGDAL_USE_GEOTIFF_INTERNAL=ON \
-  -DGDAL_USE_TIFF_INTERNAL=ON \
-  -DGDAL_USE_JPEG_INTERNAL=ON \
-  -DGDAL_USE_GIF_INTERNAL=ON \
-  -DGDAL_USE_PNG_INTERNAL=ON \
-  -DGDAL_USE_ZLIB_INTERNAL=ON \
-  -DGDAL_USE_OPENJPEG=ON \
-  -DGDAL_USE_HDF5=ON \
-  ..
-  #cmake --build . --target clean
-  cmake --build .
-  cmake --build . --target install
-  ldconfig
-  cd
-  rm -rf /opt/gdal-${GDAL_VERSION} 
-  rm /opt/gdal-${GDAL_VERSION}.tar.gz
-
+# GDAL - REMOVED, failed to install, not needed
 
 # SAGA
   cd /opt/tar && tar -xvzf saga-${SAGA_VERSION}.tar.gz
@@ -658,7 +629,7 @@ echo "options(BioC_mirror = 'https://packagemanager.posit.co/bioconductor')" >> 
   export TZ=Europe/Helsinki
 
 # GDAL
-  export GDAL_DATA=/usr/share/gdal
+#  export GDAL_DATA=/usr/share/gdal
 
 # MPI
   export OMPI_CC=gcc

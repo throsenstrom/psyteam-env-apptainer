@@ -1,27 +1,34 @@
 Bootstrap: docker
-From: rocker/rstudio:latest
+From: rocker/cuda:latest
 
 %labels
 
 # container info
-  licensing_info="/usr/licensing.txt" 
+  licensing_info="/usr/LICENSE.txt" 
   maintainer=Tom Rosenström <tom.rosenstrom@helsinki.fi>
   version=v0.0.1
 
 %files
 
 # license files
-  intel-simplified-software-license.txt /usr/intel-simplified-software-license.txt
-  licensing.txt /usr/licensing.txt
-  nvidia-nccl-license.txt /usr/nvidia-nccl-license.txt
+  LICENSE.txt /usr/LICENSE.txt
 
 %post
+
+# Install and update OS packages
+  apt-get -y update
+  apt-get -y upgrade
+  apt-get -y clean
 
 # R variables
 
   export AWS_DEFAULT_REGION=''
   export CRAN=${CRAN:-https://cloud.r-project.org/}
   export TZ=Europe/Helsinki
+
+# Install R packages
+  Rscript -e 'install.packages("lme4")'
+  Rscript -e 'install.packages("sjPlot")'
 
 %help
 

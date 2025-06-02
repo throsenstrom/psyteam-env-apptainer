@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/cuda:latest
+From: rocker/ml:latest
 
 %labels
 

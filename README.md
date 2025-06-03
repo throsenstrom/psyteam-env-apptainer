@@ -9,13 +9,13 @@ So, the associated packages will not shown in the definition file. Similarly, no
 
 To run R using the container, execute in shell
 
-`
+```
 singularity exec \
    --scratch /run,/var/lib/rstudio-server \
    --workdir $(mktemp -d) \
    rstudio_4.4.2.sif \
    rserver --www-address=127.0.0.1 --server-user=$(whoami)
-`
+```
 
 NB! Files at a preliminary testing and building phase!
 ---

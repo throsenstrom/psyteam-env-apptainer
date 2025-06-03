@@ -1,0 +1,32 @@
+Muuttujakuvaukset 29.4.
+
+FID: Findata ID 
+
+treatment_id: Treatment ID, one FID may have multiple treatment ids
+(duplicate treatment ids corrected by inserting "_B" at the end of the id)
+
+treat_id_with_doubles: Original treatment ids, with some uncorrected duplicate values (in old iCBTs)
+
+index date: First date in any of the HUS treatment registries
+(for controls and relatives, the index date of the corresponding patient)
+
+registry: Treatment registry, or specifies if control or relative
+
+control_no: is patient or control? 0 if patient, 1 or 2 if control
+
+FID_index_patient: the patient's FID to which the control person is associated to
+
+municipality: patient's home municipality
+
+municipality_no: Numeric representation of the patient's home municipality
+
+native_lang: patient's native language
+
+sex_dvv: Sex according to DVV data
+
+date_of_birth: Date of birth according to DVV data
+
+
+
+
+

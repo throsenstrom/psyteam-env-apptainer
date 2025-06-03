@@ -1,0 +1,8 @@
+Data issues to be fixed / checked (last edited 2/18/2025 3:29 PM)
+
+- all_treatments data: starting/finishing dates of iCBT for insomnia are not right
+(since all finishing dates are before starting dates)
+- all_treatments data: lots of missing values for core-om post treatment valiable (FPQR patients)
+
+
+Fixed (date)

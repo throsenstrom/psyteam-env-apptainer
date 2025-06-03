@@ -2,9 +2,10 @@
 
 Public recipe files for Apptainer (formerly Singularity) containers to be used on CSC HPC platforms by [PsyTEAM](https://blogs.helsinki.fi/psyteam-research-group/) at University of Helsinki, Finland.
 
-Currently, building from [r-env-singularity](https://github.com/CSCfi/singularity-recipes/tree/main/r-env-singularity) singularity recipe by CSC - IT Center for Science.
+Currently, using rocker/ml from the [Rocker Project](https://rocker-project.org/) as a base when building.
 
-In turn, they built from the [Rocker Project](https://rocker-project.org/) containers.
+We need to install `tlverse` from the container (e.g., in cPouta) because personal GitHub account is needed, as per their [instructions](https://tlverse.org/tlverse-handbook/setup.html#installtlverse). 
+So, the associated packages will not shown in the definition file. Similarly, non-public offline scripts will be added as a tarball to `\opt` folder.
 
 NB! Files at a preliminary testing and building phase!
 ---

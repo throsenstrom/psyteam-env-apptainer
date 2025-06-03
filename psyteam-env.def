@@ -50,8 +50,8 @@ From: rocker/ml:latest
   export TZ=Europe/Helsinki
 
 # Install R packages
-  Rscript -e 'install.packages("cmdstanr", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))'
-  Rscript -e 'install.packages("rstan", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))'
+  Rscript -e 'install.packages("cmdstanr", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
+  Rscript -e 'install.packages("rstan", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
   Rscript -e 'install.packages(c("posterior","bayesplot","sjPlot","brms","ctsem"))'
   Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen"))'
   Rscript -e 'install.packages(c("lavaan","nFactors","mirt","cvsem","GPArotations","corrplot","rstiefel"))'

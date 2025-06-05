@@ -17,8 +17,9 @@ apptainer exec \
    rserver --www-address=127.0.0.1 --server-user=$(whoami)
 ```
 
-Then use your web browser to navigate to `http://localhost:8787` from where you'll find access via RStudio Server.
-If multiple users are running the container on a same virtual machine, they need to setup different ports.
+Then use your web browser to navigate to `http://127.0.0.1:8787` from where you'll find access via RStudio Server.
+If multiple users are running the container on a same virtual machine, they need to setup different localhost addresses. 
+E.g. use 127.0.0.2 and so on, both in the Apptainer call and the web browser.
 
 Building the container is only possible in a machine with online access, so don't try it in sensitive-data environments. You'll have a copy there.
 Developers of the environment can build containers by executing in shell, e.g., 

@@ -55,7 +55,9 @@ From: rocker/ml:latest
   Rscript -e 'install.packages(c("posterior","bayesplot","sjPlot","brms","ctsem"))'
   Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen"))'
   Rscript -e 'install.packages(c("lavaan","nFactors","mirt","cvsem","GPArotations","corrplot","rstiefel"))'
-  Rscript -e 'install.packages(c("rang","pryr","fastmatrix","doParallel"))'
+  Rscript -e 'install.packages(c("psych","semTools","LatentFactor","writexl","blavaan","nortest","qgraph","viridis","patchwork"))'
+  Rscript -e 'install.packages(c("rang","pryr","fastmatrix","doParallel","cvAUC","fastDummies","stdReg","splitstackshape","splitTools","superml"))'
+  Rscript -e 'install.packages(c("ggpubr","predictABEL","pROC","SnowballC","stopwords","textcat","textmineR","tokenizers"))'
 
 %help
 

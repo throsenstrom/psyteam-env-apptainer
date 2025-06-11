@@ -75,7 +75,7 @@ From: rocker/cuda:latest
   curl -o /opt/psyteam_scripts/sbert/vocab.txt https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/vocab.txt?download=true
   curl -o /opt/psyteam_scripts/sbert/special_tokens_map.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/special_tokens_map.json?download=true
   
-  pip install spacy transformers datasets imodelsx peft bertopic evaluate tdqm
+  pip install spacy transformers datasets imodelsx peft bertopic evaluate tdqm jupyter
   
 %help
 

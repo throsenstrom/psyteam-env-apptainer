@@ -34,6 +34,14 @@ From: rocker/cuda:latest
   psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R
   psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R
 
+  sbert/config.json /opt/psyteam_scripts/sbert/config.json
+  sbert/model.safetensors /opt/psyteam_scripts/sbert/model.safetensors
+  sbert/tokenizer_config.json /opt/psyteam_scripts/sbert/tokenizer_config.json
+  sbert/sentence_bert_config.json /opt/psyteam_scripts/sbert/sentence_bert_config.json
+  sbert/config_sentence_transformers.json /opt/psyteam_scripts/sbert/config_sentence_transformers.json
+  sbert/vocab.txt /opt/psyteam_scripts/sbert/vocab.txt
+  sbert/special_tokens_map.json /opt/psyteam_scripts/sbert/special_tokens_map.json
+
 %post
 
 # Install and update OS packages
@@ -66,14 +74,15 @@ From: rocker/cuda:latest
   curl -o /opt/psyteam_scripts/XLMRoberta/config.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/config.json?download=true
   curl -o /opt/psyteam_scripts/XLMRoberta/model.safetensors https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/model.safetensors?download=true
   curl -o /opt/psyteam_scripts/XLMRoberta/tokenizer_config.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/tokenizer_config.json?download=true
-  
-  curl -o /opt/psyteam_scripts/sbert/config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config.json?download=true
-  curl -o /opt/psyteam_scripts/sbert/model.safetensors https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/model.safetensors?download=true
-  curl -o /opt/psyteam_scripts/sbert/tokenizer_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/tokenizer_config.json?download=true
-  curl -o /opt/psyteam_scripts/sbert/sentence_bert_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/sentence_bert_config.json?download=true
-  curl -o /opt/psyteam_scripts/sbert/config_sentence_transformers.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config_sentence_transformers.json?download=true
-  curl -o /opt/psyteam_scripts/sbert/vocab.txt https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/vocab.txt?download=true
-  curl -o /opt/psyteam_scripts/sbert/special_tokens_map.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/special_tokens_map.json?download=true
+
+# Below download links don't work, so sending them to container as local files from a VM in above
+#  curl -o /opt/psyteam_scripts/sbert/config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/model.safetensors https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/model.safetensors?download=true
+#  curl -o /opt/psyteam_scripts/sbert/tokenizer_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/tokenizer_config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/sentence_bert_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/sentence_bert_config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/config_sentence_transformers.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config_sentence_transformers.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/vocab.txt https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/vocab.txt?download=true
+#  curl -o /opt/psyteam_scripts/sbert/special_tokens_map.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/special_tokens_map.json?download=true
   
   pip install spacy transformers datasets imodelsx peft bertopic evaluate tdqm jupyter
   

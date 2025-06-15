@@ -24,8 +24,7 @@ E.g. use 127.0.0.2 and so on, both in the Apptainer call and the web browser.
 **Before running RStudio for the first time** it seems that you must navigate to home folder and create the following rstudio folder:
 
 ```
-cd
-mkdir .local/share/rstudio
+mkdir -p ~/.local/share/rstudio/log
 ```
 
 It seems that the Rstudio Server tries to log on to that folder and fails if it doesn't exists in your SD Desktop. So create it once.

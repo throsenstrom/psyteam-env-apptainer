@@ -1,0 +1,84 @@
+Bootstrap: docker
+From: quay.io/jupyter/pytorch-notebook:cuda12-latest
+
+%labels
+
+# container info
+  licensing_info="/usr/LICENSE.txt" 
+  maintainer=Tom Rosenström <tom.rosenstrom@helsinki.fi>
+  version=v0.0.1
+
+%files
+
+# license files
+  LICENSE.txt /usr/LICENSE.txt
+  psyteam_scripts/dcirt/simulation_dcirt_revised.R /opt/psyteam_scripts/dcirt/simulation_dcirt_revised.R
+  psyteam_scripts/dcirt/standardized_DC_density.R /opt/psyteam_scripts/dcirt/standardized_DC_density.R
+  
+  psyteam_scripts/dda_prepost/direction_dependence_measures.R /opt/psyteam_scripts/dda_prepost/direction_dependence_measures.R
+  psyteam_scripts/dda_prepost/simulate_dda.R /opt/psyteam_scripts/dda_prepost/simulate_dda.R
+  psyteam_scripts/dda_prepost/README.md /opt/psyteam_scripts/dda_prepost/README.md
+
+  psyteam_scripts/XLMRoberta/special_tokens_map.json /opt/psyteam_scripts/XLMRoberta/special_tokens_map.json
+  psyteam_scripts/XLMRoberta/torch_test_xlm-roberta.ipynb /opt/psyteam_scripts/XLMRoberta/torch_test_xlm-roberta.ipynb
+  psyteam_scripts/XLMRoberta/torch_test_xlm-roberta_peft.ipynb /opt/psyteam_scripts/XLMRoberta/torch_test_xlm-roberta_peft.ipynb
+
+  psyteam_scripts/shared_from_Kapseli/collect_wide_data_on_patients_and_controls.R /opt/psyteam_scripts/shared_from_Kapseli/collect_wide_data_on_patients_and_controls.R
+  psyteam_scripts/shared_from_Kapseli/dataToBLFU_Kapseli.R /opt/psyteam_scripts/shared_from_Kapseli/dataToBLFU_Kapseli.R
+  psyteam_scripts/shared_from_Kapseli/insomnia_phase_data_join.R /opt/psyteam_scripts/shared_from_Kapseli/insomnia_phase_data_join.R
+  psyteam_scripts/shared_from_Kapseli/issues_to_fix.txt /opt/psyteam_scripts/shared_from_Kapseli/issues_to_fix.txt
+  psyteam_scripts/shared_from_Kapseli/lare_goals_create.R /opt/psyteam_scripts/shared_from_Kapseli/lare_goals_create.R
+  psyteam_scripts/shared_from_Kapseli/ses_codes_afterwards_fill.R /opt/psyteam_scripts/shared_from_Kapseli/ses_codes_afterwards_fill.R
+  psyteam_scripts/shared_from_Kapseli/session_times_iCBT_create.R /opt/psyteam_scripts/shared_from_Kapseli/session_times_iCBT_create.R
+  psyteam_scripts/shared_from_Kapseli/variables_alustava.txt /opt/psyteam_scripts/shared_from_Kapseli/variables_alustava.txt
+  psyteam_scripts/shared_from_Kapseli/old_versions/all_ses_times2_create.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/all_ses_times2_create.R
+  psyteam_scripts/shared_from_Kapseli/old_versions/combine_control_and_covariate_data.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/combine_control_and_covariate_data.R
+  psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R
+  psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R
+
+  sbert/config.json /opt/psyteam_scripts/sbert/config.json
+  sbert/model.safetensors /opt/psyteam_scripts/sbert/model.safetensors
+  sbert/tokenizer_config.json /opt/psyteam_scripts/sbert/tokenizer_config.json
+  sbert/sentence_bert_config.json /opt/psyteam_scripts/sbert/sentence_bert_config.json
+  sbert/config_sentence_transformers.json /opt/psyteam_scripts/sbert/config_sentence_transformers.json
+  sbert/vocab.txt /opt/psyteam_scripts/sbert/vocab.txt
+  sbert/special_tokens_map.json /opt/psyteam_scripts/sbert/special_tokens_map.json
+
+%post
+
+# Install and update OS packages
+  apt-get -y update
+  apt-get -y upgrade
+  apt-get -y install build-essential
+  apt-get -y clean
+
+  git clone https://github.com/stan-dev/cmdstan.git --recursive \
+  && cd cmdstan && make -j4 build
+  
+# CUDA tools and XLMRoberta  
+  curl -o /opt/psyteam_scripts/XLMRoberta/tokenizer.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/tokenizer.json?download=true
+  curl -o /opt/psyteam_scripts/XLMRoberta/config.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/config.json?download=true
+  curl -o /opt/psyteam_scripts/XLMRoberta/model.safetensors https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/model.safetensors?download=true
+  curl -o /opt/psyteam_scripts/XLMRoberta/tokenizer_config.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/tokenizer_config.json?download=true
+
+# Below download links don't work, so sending them to container as local files from a VM in above
+#  curl -o /opt/psyteam_scripts/sbert/config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/model.safetensors https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/model.safetensors?download=true
+#  curl -o /opt/psyteam_scripts/sbert/tokenizer_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/tokenizer_config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/sentence_bert_config.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/sentence_bert_config.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/config_sentence_transformers.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/config_sentence_transformers.json?download=true
+#  curl -o /opt/psyteam_scripts/sbert/vocab.txt https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/vocab.txt?download=true
+#  curl -o /opt/psyteam_scripts/sbert/special_tokens_map.json https://huggingface.co/TurkuNLP/sbert-uncased-finnish-paraphrase/resolve/main/special_tokens_map.json?download=true
+  
+  pip install spacy 
+  pip install transformers 
+  pip install datasets 
+  pip install imodelsx 
+  pip install peft 
+  pip install bertopic 
+  pip install evaluate 
+  pip install tdqm 
+  
+%help
+
+  This is container for CUDA environment of PsyTEAM research group from University of Helsinki.

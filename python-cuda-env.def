@@ -45,15 +45,6 @@ From: quay.io/jupyter/pytorch-notebook:cuda12-latest
   sbert/special_tokens_map.json /opt/psyteam_scripts/sbert/special_tokens_map.json
 
 %post
-
-# Install and update OS packages
-  apt-get -y update
-  apt-get -y upgrade
-  apt-get -y install build-essential
-  apt-get -y clean
-
-  git clone https://github.com/stan-dev/cmdstan.git --recursive \
-  && cd cmdstan && make -j4 build
   
 # CUDA tools and XLMRoberta  
   curl -o /opt/psyteam_scripts/XLMRoberta/tokenizer.json https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/main/tokenizer.json?download=true
@@ -77,7 +68,7 @@ From: quay.io/jupyter/pytorch-notebook:cuda12-latest
   pip install peft 
   pip install bertopic 
   pip install evaluate 
-  pip install tdqm 
+  pip install tqdm 
   
 %help
 

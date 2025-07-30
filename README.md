@@ -9,7 +9,7 @@ So, the associated packages will not shown in the definition file.
 Similarly, non-public offline scripts will be added to folder `/usr/psyteam_cscsd_scripts`, whereas the scripts from this repo are in `/opt`. 
 The final image containing these additional tools is called `psyteam-env-plus.sif`, available at our SD Desktop.
 
-To run R in our SD Desktop using the container, navigate to the folder containing the sif-file and execute in shell
+To run R in our SD Desktop using the container, navigate to the folder `/shared-directory/kontit` containing the sif-file and execute in shell
 
 ```
 apptainer exec \
@@ -32,7 +32,7 @@ source exec_R.sh
 
 The bind argument creates a log-folder needed by RStudio server. 
 In addition, it binds our data folder to the folder `/mnt` of the container. 
-Please, create a folder with your name there for your own work, similarly as we had in Kapseli.
+Please, create a folder with your under the data folder for your own work, similarly as we had in Kapseli.
 
 IMPORTANT! Do work in the mounted volume because it has size 1Tb whereas the system volume is only 80Gb. 
 Also, please empty your folder `~/.local/share/rstudio/log` if it gets big to preserve space at the very limited system volume.

@@ -6,31 +6,41 @@ Currently, using rocker/ml from the [Rocker Project](https://rocker-project.org/
 
 We need to install `tlverse` from the container (e.g., in cPouta) because personal GitHub account is needed, as per their [instructions](https://tlverse.org/tlverse-handbook/setup.html#installtlverse). 
 So, the associated packages will not shown in the definition file. 
-Similarly, non-public offline scripts will be added to folder `/usr/psyteam_cscsd_scripts`, whereas the scripts from this repo are in `/opt`.
+Similarly, non-public offline scripts will be added to folder `/usr/psyteam_cscsd_scripts`, whereas the scripts from this repo are in `/opt`. 
+The final image containing these additional tools is called `psyteam-env-plus.sif`, available at our SD Desktop.
 
-To run R using the container, navigate to the folder containing the sif-file and execute in shell
+To run R in our SD Desktop using the container, navigate to the folder containing the sif-file and execute in shell
 
 ```
 apptainer exec \
    --scratch /run,/var/lib/rstudio-server \
    --workdir $(mktemp -d) \
-   --bind ~/.local/share/rstudio/log \
-   psyteam-env.sif \
+   --bind ~/.local/share/rstudio/log,/media/volume/findata:/mnt \
+   psyteam-env-plus.sif \
    rserver --www-address=127.0.0.1 --server-user=$(whoami)
 ```
 
 Then use your web browser to navigate to `http://127.0.0.1:8787` from where you'll find access via RStudio Server.
 If multiple users are running the container on a same virtual machine, they need to setup different localhost addresses. 
-E.g. use 127.0.0.2 and so on, both in the Apptainer call and the web browser.
-
-The bind argument line is needed only **when running RStudio for the first time**. It creates the needed folder.
-An alternative is to create it manually before running Apptainer by first running:
+E.g. use 127.0.0.2 and so on, both in the Apptainer call and the web browser. 
+The call text and the sif file can be found from SD Desktop folder `/shared-directory/kontit`. 
+If you are sole user at the time, you can simply call this script in the folder using terminal and running
 
 ```
-mkdir -p ~/.local/share/rstudio/log
+source exec_R.sh
 ```
 
-It seems that the Rstudio Server tries to log on to that folder and fails only if it doesn't exists in your SD Desktop. So create it once.
+The bind argument creates a log-folder needed by RStudio server. 
+In addition, it binds our data folder to the folder `/mnt` of the container. 
+Please, create a folder with your name there for your own work, similarly as we had in Kapseli.
+
+IMPORTANT! Do work in the mounted volume because it has size 1Tb whereas the system volume is only 80Gb. 
+Also, please empty your folder `~/.local/share/rstudio/log` if it gets big to preserve space at the very limited system volume.
+You may follow disk space at different volumes by running in terminal 
+
+```
+df -h
+```
 
 Building the container is only possible in a machine with online access, so don't try it in sensitive-data environments. You'll have a copy there.
 Developers of the environments can build containers by executing in shell of another VM, e.g., 
@@ -40,6 +50,5 @@ git clone https://github.com/throsenstrom/psyteam-env-apptainer/
 cd psyteam-env-apptainer/
 apptainer build psyteam-env.sif psyteam-env.def
 ```
-	
-NB! Files at a preliminary testing and building phase!
+
 ---

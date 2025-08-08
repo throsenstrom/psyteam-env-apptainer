@@ -15,7 +15,7 @@ To run R in our SD Desktop using the container, navigate to the folder `/shared-
 apptainer exec \
    --scratch /run,/var/lib/rstudio-server \
    --workdir $(mktemp -d) \
-   --bind ~/.local/share/rstudio/log,/media/volume/findata:/mnt \
+   --bind ~/.local/share/rstudio/log,/media/volume:/mnt \
    psyteam-env-plus.sif \
    rserver --www-address=127.0.0.1 --server-user=$(whoami)
 ```
@@ -31,8 +31,13 @@ source exec_R.sh
 ```
 
 The bind argument creates a log-folder needed by RStudio server. 
-In addition, it binds our data folder to the folder `/mnt` of the container. 
-Please, create a folder with your under the data folder for your own work, similarly as we had in Kapseli.
+In addition, it binds our data volume to the folder `/mnt` of the container. 
+Please, create a folder with your under the data volume for your own work, similarly as we had in Kapseli.
+When running RStudio server for the very first time you may need to create the log-folder to be bound by running:
+
+```
+mkdir ~/.local/share/rstudio/log
+```
 
 IMPORTANT! Do work in the mounted volume because it has size 1Tb whereas the system volume is only 80Gb. 
 Also, please empty your folder `~/.local/share/rstudio/log` if it gets big to preserve space at the very limited system volume.

@@ -1,0 +1,23 @@
+Bootstrap: docker
+From: rockylinux/rockylinux:9.3
+
+%labels
+  Author Maciej Janicki <maciej.janicki@csc.fi>
+
+%post
+  PYVER=3.12
+
+  dnf -y install python${PYVER} python${PYVER}-devel python${PYVER}-pip
+
+  # set the "python" and "pip" commands
+  alternatives --install /usr/bin/python python /usr/bin/python${PYVER} 1
+  alternatives --install /usr/bin/pip pip /usr/bin/pip${PYVER} 1
+
+  # upgrade pip
+  pip install -U pip
+
+  # install the Python packages
+  pip install jupyter numpy pandas pyarrow spacy
+  pip install torch --index-url https://download.pytorch.org/whl/cpu
+  pip install transformers sentence-transformers
+

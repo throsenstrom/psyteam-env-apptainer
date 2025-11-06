@@ -19,5 +19,5 @@ From: rockylinux/rockylinux:9.3
   # install the Python packages
   pip install jupyter numpy pandas pyarrow spacy
   pip install torch --index-url https://download.pytorch.org/whl/cpu
-  pip install transformers sentence-transformers
+  pip install datasets transformers sentence-transformers
 

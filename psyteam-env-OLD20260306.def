@@ -6,7 +6,7 @@ From: rocker/ml:latest
 # container info
   licensing_info="/usr/LICENSE.txt" 
   maintainer=Tom Rosenström <tom.rosenstrom@helsinki.fi>
-  version=v0.1.0
+  version=v0.0.1
 
 %files
 
@@ -31,18 +31,6 @@ From: rocker/ml:latest
   psyteam_scripts/shared_from_Kapseli/old_versions/combine_control_and_covariate_data.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/combine_control_and_covariate_data.R
   psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/data_build_functions.R
   psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R /opt/psyteam_scripts/shared_from_Kapseli/old_versions/icbt_drop_out_create.R
-  
-# 6.3.2026 tulleita matskuja
-psyteam_scripts/CSC_Jaakko_scripts/OITR_SHAP_test_script_CSC.R  /opt/psyteam_scripts/CSC_Jaakko_scripts/OITR_SHAP_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/Imputation_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/Imputation_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/TMLE_binary_Y_with_missing_values_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_binary_Y_with_missing_values_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/TMLE_categorical_Y_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_categorical_Y_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/TMLE_continuous_Y_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_continuous_Y_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/TMLE_continuous_Y_with_missing_values_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_continuous_Y_with_missing_values_test_script_CSC.R
-psyteam_scripts/CSC_Jaakko_scripts/TMLE_simulation_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_simulation_test_script_CSC.R 
-psyteam_scripts/CSC_Jaakko_scripts/washb_data.csv /opt/psyteam_scripts/CSC_Jaakko_scripts/washb_data.csv
-
-psyteam_scripts/tarballs/superMICE_1.1.1.tar.gz /opt/tarballs/superMICE_1.1.1.tar.gz
 
 %post
 
@@ -62,23 +50,14 @@ psyteam_scripts/tarballs/superMICE_1.1.1.tar.gz /opt/tarballs/superMICE_1.1.1.ta
   export TZ=Europe/Helsinki
 
 # Install R packages
-  Rscript -e 'install.packages("opt/tarballs/superMICE_1.1.1.tar.gz", repos = NULL, type = "source")'
   Rscript -e 'install.packages("cmdstanr", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
   Rscript -e 'install.packages("rstan", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
   Rscript -e 'install.packages(c("posterior","bayesplot","sjPlot","brms","ctsem"))'
-  Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen", "nlme", ))'
+  Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen"))'
   Rscript -e 'install.packages(c("lavaan","nFactors","mirt","cvsem","GPArotations","corrplot","rstiefel"))'
-  Rscript -e 'install.packages(c("psych","semTools","writexl","blavaan","nortest","qgraph","viridis","patchwork"))'
+  Rscript -e 'install.packages(c("psych","semTools","LatentFactor","writexl","blavaan","nortest","qgraph","viridis","patchwork"))'
   Rscript -e 'install.packages(c("rang","pryr","fastmatrix","doParallel","cvAUC","fastDummies","stdReg","splitstackshape","splitTools","superml"))'
   Rscript -e 'install.packages(c("ggpubr","predictABEL","pROC","SnowballC","stopwords","textcat","textmineR","tokenizers"))'
-  Rscript -e 'install.packages(c("latentFactoR", "geofi", " emmeans", "marginaleffects", "estimatr", "effectsize"))'
-## tlverse-learnerit ja super-MICE-riippuvuuksia ymv.
-  Rscript -e 'install.packages(c("speedglm", "Rsolnp", "nnls", "xgboost", "arm", "bartMachine", "earth", "forecast", "grf", "gbm", "h2o", "keras", "randomForest", "rugarch", "SuperLearner", "tsDyn", "lightgbm", "dbarts", "gam", "haldensify", "hts", "GA", "SIS", "partykit"))'
-  Rscript -e 'install.packages(c("tableone", "R.rsp", "rgl", "rJava", "covr"))'
-  Rscript -e 'install.packages(c("tmle", "txshift"))'
-  Rscript -e 'install.packages(c("fastshap","shapviz"))'
-  Rscript -e 'install.packages(c("mice", "extraTrees", "KernelKnn", "kernlab", "LogicReg", "party", "spls"))'
-  Rscript -e 'install.packages(c("ltmle"))'
 
 %help
 

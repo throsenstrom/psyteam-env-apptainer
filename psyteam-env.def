@@ -66,7 +66,7 @@ tarballs/superMICE_1.1.1.tar.gz /opt/tarballs/superMICE_1.1.1.tar.gz
   Rscript -e 'install.packages("cmdstanr", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
   Rscript -e 'install.packages("rstan", repos = c("https://stan-dev.r-universe.dev", getOption("repos")))'
   Rscript -e 'install.packages(c("posterior","bayesplot","sjPlot","brms","ctsem"))'
-  Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen", "nlme", ))'
+  Rscript -e 'install.packages(c("lme4","survival","dHSIC","glmmTMB","glmnet","grpnet","pammtools","survPen", "nlme"))'
   Rscript -e 'install.packages(c("lavaan","nFactors","mirt","cvsem","GPArotations","corrplot","rstiefel"))'
   Rscript -e 'install.packages(c("psych","semTools","writexl","blavaan","nortest","qgraph","viridis","patchwork"))'
   Rscript -e 'install.packages(c("rang","pryr","fastmatrix","doParallel","cvAUC","fastDummies","stdReg","splitstackshape","splitTools","superml"))'

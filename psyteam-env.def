@@ -42,7 +42,7 @@ psyteam_scripts/CSC_Jaakko_scripts/TMLE_continuous_Y_with_missing_values_test_sc
 psyteam_scripts/CSC_Jaakko_scripts/TMLE_simulation_test_script_CSC.R /opt/psyteam_scripts/CSC_Jaakko_scripts/TMLE_simulation_test_script_CSC.R 
 psyteam_scripts/CSC_Jaakko_scripts/washb_data.csv /opt/psyteam_scripts/CSC_Jaakko_scripts/washb_data.csv
 
-psyteam_scripts/tarballs/superMICE_1.1.1.tar.gz /opt/tarballs/superMICE_1.1.1.tar.gz
+tarballs/superMICE_1.1.1.tar.gz /opt/tarballs/superMICE_1.1.1.tar.gz
 
 %post
 

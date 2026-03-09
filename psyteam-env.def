@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/rstudio:latest
+From: rocker/tidyverse:latest
 # Previously from: rocker/ml:latest, but it relied on crashing jupyter solution in March 2026
 
 %labels

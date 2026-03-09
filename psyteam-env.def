@@ -1,5 +1,6 @@
 Bootstrap: docker
-From: rocker/ml:latest
+From: rocker/rstudio:latest
+# Previously from: rocker/ml:latest, but it relied on crashing jupyter solution in March 2026
 
 %labels
 

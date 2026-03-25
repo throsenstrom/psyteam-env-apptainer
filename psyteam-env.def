@@ -54,6 +54,7 @@ tarballs/xgboost_1.7.11.1.tar.gz /opt/tarballs/xgboost_1.7.11.1.tar.gz
   apt-get -y upgrade
   apt-get -y install build-essential
   apt-get -y install curl
+  apt-get -y install libglpk-dev # some tlverse dependency needs this (previously ran from sandbox)
   apt-get -y clean
 
   git clone https://github.com/stan-dev/cmdstan.git --recursive \

@@ -87,13 +87,13 @@ tarballs/xgboost_1.7.11.1.tar.gz /opt/tarballs/xgboost_1.7.11.1.tar.gz
   Rscript -e 'devtools::install_github("r-lib/sloop")'
   # tlverse manually through a sandbox (needs an access token)
 ## From tarballs, plus dependencies
-  Rscript -e 'install.packages("opt/tarballs/superMICE_1.1.1.tar.gz", repos = NULL, type = "source")'
+  Rscript -e 'install.packages("/opt/tarballs/superMICE_1.1.1.tar.gz", repos = NULL, type = "source")'
   # superml dependencies and package
   Rscript -e 'install.packages(c("assertthat", "Metrics", "BH", "RcppArmadillo", "rlang", "naivebayes", "ClusterR", "FNN", "ranger", "glmnet", "R6"))' # some already above but kept here for full reference
-  Rscript -e 'install.packages("opt/tarballs/superml_0.5.7.tar.gz", repos = NULL, type = "source")'
+  Rscript -e 'install.packages("/opt/tarballs/superml_0.5.7.tar.gz", repos = NULL, type = "source")'
   # xgboost dependencies and package
   Rscript -e 'install.packages(c("Matrix", "methods", "data.table", "jsonlite", "knitr", "rmarkdown", "ggplot2", "DiagrammeR", "Ckmeans.1d.dp", "vcd", "cplm", "e1071", "caret", "testthat", "lintr", "igraph", "float", "crayon", "titanic"))'
-  Rscript -e 'install.packages("opt/tarballs/xgboost_1.7.11.1.tar.gz", repos = NULL, type = "source")'
+  Rscript -e 'install.packages("/opt/tarballs/xgboost_1.7.11.1.tar.gz", repos = NULL, type = "source")'
 
 %help
 

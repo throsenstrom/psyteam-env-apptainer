@@ -1,6 +1,6 @@
 all: sd_llm_container_gpu.sif
 
-sd_llm_container_cpu.sif: sd_llm_container_gpu.def
+sd_llm_container_gpu.sif: sd_llm_container_gpu.def
 	singularity build $@ $<
 
 push: sd_llm_container_gpu.sif

@@ -14,8 +14,9 @@ source exec_R.sh
 ```
 
 Then use your web browser to navigate to `http://127.0.0.1:8787` from where you'll find access via RStudio Server. Make a folder with your name under `/media/volume/kontit/` for your R project files and analyses. 
-In practice, you'll want to make your own `exec_R_myname.sh` file by copying and renaming the original `exec_R.sh` and changing last digit of the rserver ip address parameter to a digit not listed in the file `varatut_rstudio_ipt`. 
-Running with this prevents conflicts between simultaneous users of SD Desktop. It is also possible to directly execute the commands in `exec_R.sh` in the shell, excluding the first line, possibly modifying them. They are:
+
+In practice, you'll want to make your own `exec_R_myname.sh` file by copying and renaming the original `exec_R.sh` and changing last digit of the rserver ip address parameter to a digit not listed in the file `varatut_rstudio_ipt.txt`. 
+Running with a unique local ip prevents conflicts between simultaneous users of SD Desktop. It is also possible to directly execute the commands in `exec_R.sh` in the shell, excluding the first line, possibly modifying others. They are:
 
 ```
 #!/bin/bash
@@ -67,18 +68,18 @@ apptainer exec \
 ```
 
 Naturally, you must build the entire computational task in to the file `myscript.R` and place it appropriately 
-(folder `/mnt/work/myname` in example but do substitute other obvious names for the file and folder).
+(folder `/mnt/work/myname` in the example, but do substitute other obvious names for the file and folder).
 
 ## About the container(s)
 
 The definition (.def) files in this repository mostly describe the recipes for building the containers from scratch. However, the final RStudio container at the SD Desktop was not built directly from the definition file. 
 Instead, a sandbox was built, some additional installations carried out, and a singularity image file (.sif) was built from the sandbox. 
 Namely, we need to install `tlverse` from a sandbox (e.g., in cPouta) because personal GitHub account is needed, as per their [instructions](https://tlverse.org/tlverse-handbook/setup.html#installtlverse). 
-So, the associated packages will not shown in the definition file. 
+So, the associated packages will not show up in the definition file. 
 Non-public offline scripts were added to the folder `/usr/psyteam_cscsd_scripts` of the first container version (`psyteam-env-plus.sif`), also available in SD Desktop. 
 Scripts from this repo are under `/opt` in both the old and newer containers.
 
-Descriptions about the large language models and related CPU and GPU containers will be made available later.
+More descriptions about the large language models and related CPU and GPU containers will be made available later; for now, see their [sub-folder](https://github.com/throsenstrom/psyteam-env-apptainer/tree/main/sd_llm_container).
 
 Building the containers is only possible in a machine with online access, so don't try it in sensitive-data environments. You'll have a copy there.
 Developers of the environments can build containers by executing in shell of another VM, e.g., 

@@ -53,7 +53,7 @@ df -h
 ## Running long R sessions while logged out
 
 Sometimes it is necessary to leave R to carry out a computation for several hours, days, or even weeks, while doing other things. 
-In those cases, it is recommendable to run an R script from a terminal instead of using RStudio server.
+In those cases, it is recommendable to run an R script from the Byobu terminal instead of using RStudio server (write `byobu` to the usual terminal or click it from the apps).
 This can be done with a very similar execute command as in above, but with a call to `Rscript` command appended at the end instead of the `rserver` command. 
 For example:
 
